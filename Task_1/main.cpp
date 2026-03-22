@@ -9,15 +9,12 @@
 using namespace std;
 
 /**
- * @brief Предикат для проверки, является ли символ цифрой
+ * @brief Проверка является ли символ цифрой
  */
 bool is_digit(char c) {
     return isdigit(static_cast<unsigned char>(c));
 }
 
-/**
- * @brief Пользовательский итератор ввода для чтения символов из потока
- */
 class ptin_iterator {
     std::istream* in_stream;
     char value;
@@ -65,9 +62,6 @@ public:
     }
 };
 
-/**
- * @brief Пользовательский итератор вывода для записи символов в поток
- */
 class ptout_iterator {
     std::ostream* out_stream;
 
