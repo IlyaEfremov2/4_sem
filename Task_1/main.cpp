@@ -110,10 +110,10 @@ int main() {
 
     cout << "\nИсходное содержимое файла:" << endl;
 
-    string line;
-    while (getline(input_file, line)) {
-        cout << line << endl;
-    }
+    ptin_iterator it_read_begin(input_file);
+    ptin_iterator it_read_end;
+
+    copy(it_read_begin, it_read_end, ptout_iterator(cout));
 
     input_file.clear();
     input_file.seekg(0);
@@ -124,7 +124,7 @@ int main() {
     ptin_iterator it_end;
 
     replace_copy_if(it_begin, it_end,
-        ptout_iterator(cout),is_digit,'_');
+        ptout_iterator(cout), is_digit, '_');
 
     input_file.close();
 
