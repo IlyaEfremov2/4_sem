@@ -85,6 +85,16 @@ public:
 };
 
 /**
+ * @brief Вспомогательная функция для вывода контейнера
+ */
+template<typename Container>
+void printContainer(const string& name, const Container& container) {
+    cout << name << ": ";
+    copy(container.begin(), container.end(), ptout_iterator(cout));
+    cout << endl;
+}
+
+/**
  * @brief Главная функция программы
  * Вставляет перед пятым с конца элементом списка последние 5 элементов дека в обратном порядке
  */
@@ -128,21 +138,14 @@ int main() {
         return 1;
     }
 
-    cout << "\nДек D: ";
-    copy(D.begin(), D.end(), ptout_iterator(cout));
-    cout << endl;
-
-    cout << "Список L: ";
-    copy(L.begin(), L.end(), ptout_iterator(cout));
-    cout << endl;
+    printContainer("Дек D", D);
+    printContainer("Список L", L);
 
     auto it = L.end();
     advance(it, -5);
     L.insert(it, D.rbegin(), D.rbegin() + 5);
 
-    cout << "Список L после вставки: ";
-    copy(L.begin(), L.end(), ptout_iterator(cout));
-    cout << endl;
+    printContainer("Список L после вставки", L);
 
     return 0;
 }
