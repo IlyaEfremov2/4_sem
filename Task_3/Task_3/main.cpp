@@ -1,6 +1,6 @@
 ﻿#include <iostream>
 #include <vector>
-#include <set>
+#include <map>
 #include <algorithm>
 #include <iterator>
 #include <fstream>
@@ -87,7 +87,7 @@ public:
 /**
  * @brief Главная функция программы
  * Определяет количество повторений каждого числа в векторе
- * с использованием вспомогательного мультимножества
+ * с использованием вспомогательного словаря map
  */
 int main() {
     setlocale(LC_ALL, "Russian");
@@ -118,24 +118,15 @@ int main() {
     copy(V.begin(), V.end(), ptout_iterator(cout));
     cout << endl;
 
-    multiset<int> M;
+
+    map<int, int> M;
     for (const auto& val : V) {
-        M.insert(val);
+        M[val]++;  
     }
 
-    cout << "\nВспомогательное мультимножество: ";
-    copy(M.begin(), M.end(), ptout_iterator(cout));
-    cout << endl << endl;
-
-    auto itM = M.begin();
-    while (itM != M.end()) {
-        int value = *itM;
-
-        auto upper = M.upper_bound(value);
-
-        int count = distance(itM, upper);
-        cout << "Число " << value << " встречается " << count << " раз(а)" << endl;
-        itM = upper;
+    for (const auto& pair : M) {
+        cout << "Число " << pair.first << " встречается " << pair.second << " раз(а)" << endl;
     }
+
     return 0;
 }
